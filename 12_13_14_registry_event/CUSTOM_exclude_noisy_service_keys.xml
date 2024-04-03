@@ -1,0 +1,31 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="exclude">
+				<!-- Exclude noisy Registry keys from change monitoring -->
+				<!-- Complements AUDI_include_windows_services.xml -->
+				<TargetObject condition="is">HKLM\System\CurrentControlSet\Services\Tcpip\Parameters</TargetObject> <!-- Updated every few secondy by various running processes, especially noisy are SCCM and WMI -->
+				<Rule groupRelation="and">
+					<TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\SMS_</TargetObject> <!-- Updated every few secondy via WMI -->
+					<Image condition="is">C:\Windows\system32\wbem\wmiprvse.exe</Image>
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetObject condition="end with">\Linkage</TargetObject> <!-- Updated often via WMI -->
+					<Image condition="is">C:\Windows\system32\wbem\wmiprvse.exe</Image>
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\EventLog</TargetObject> <!-- Updated often via WMI -->
+					<Image condition="is">C:\Windows\system32\wbem\wmiprvse.exe</Image>
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\LanmanServer\Shares</TargetObject> <!-- Updated often via svchost.exe -->
+					<Image condition="is">C:\Windows\system32\svchost.exe</Image>
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\W32Time\Config\LastKnownGoodTime</TargetObject> <!-- Updated often by svchost.exe -->
+					<Image condition="is">C:\Windows\system32\svchost.exe</Image>
+				</Rule>				
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

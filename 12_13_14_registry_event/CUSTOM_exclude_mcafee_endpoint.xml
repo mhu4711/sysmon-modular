@@ -1,0 +1,16 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="exclude">
+				<!--McAfee:Agent-->
+				<TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\McAfeeFramework</TargetObject>
+				<TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\macmnsvc</TargetObject>
+				<TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\masvc</TargetObject>
+				<!--McAfee:Host Intrusion Detection Service-->
+				<TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\mfehidk</TargetObject>
+				<!--McAfee:Arbitrary Access Control Driver-->
+				<TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\mfeaack</TargetObject>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

@@ -1,0 +1,16 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ImageLoad onmatch="exclude">
+				<ImageLoaded name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="end with">wmiutils.dll</ImageLoaded>
+				<!-- CSIRT Note: This rule 'as is' is too noisy and does not convey particularily useful information. Ideally, we'd want to exclude WMI-related events caused by SYSTEM/S-1-5-18, but this is currently not possible in Sysmon (no Accountname or SID reported in this EventID). Therefore, we exclude this ATM and rely on other, more usefull Events (e.g. ProcessCreate) for WMI detection. -->
+				<!--
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="end with">wmiutils.dll</ImageLoaded>
+					<SecurityID condition="is">S-1-5-18</SecurityID>
+				</Rule>
+				-->
+			</ImageLoad>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="include">
+				<!-- The TargetObjects specified in include_com_hijack.xml (*\Software\Classes\CLSID) do not seem to be effective in Sysmon. Instead, changes to these keys are reported as HKCR\CLSID\* and HKU\<SID>_Classes\CLSID\* by Sysmon -->
+				<TargetObject name="technique_id=T1122,technique_name=Component Object Model Hijacking" condition="begin with">HKCR\CLSID</TargetObject>
+				<TargetObject name="technique_id=T1122,technique_name=Component Object Model Hijacking" condition="contains">_Classes\CLSID</TargetObject>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

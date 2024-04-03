@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="exclude">
+				<Image condition="is">C:\\Program Files\\System Center Operations Manager\\Agent\\HealthService.exe</Image>
+				<Image condition="is">C:\Program Files\System Center Operations Manager\Agent\MOMPerfSnapshotHelper.exe</Image>
+				<TargetObject condition="begin with">HKLM\System\CurrentControlSet\SERVICES\LanmanServer\Shares\Security\gthrsvc_*</TargetObject>
+				<TargetObject condition="begin with">HKLM\System\CurrentControlSet\SERVICES\LanmanServer\Shares\gthrsvc_*</TargetObject>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

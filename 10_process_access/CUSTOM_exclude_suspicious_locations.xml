@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="exclude">
+		<!-- Overrides for include_suspicious_locations.xml - Too noisy (MS Teams runs from AppData\Local for example)-->
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\</SourceImage>
+      </ProcessAccess>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

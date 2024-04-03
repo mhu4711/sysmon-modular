@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ProcessCreate onmatch="exclude">
+				<ParentImage condition="is">C:\Program Files\Tenable\Nessus Agent\nessusd.exe</ParentImage>
+				<CurrentDirectory condition="is">C:\ProgramData\Tenable\Nessus Agent\nessus\plugins\</CurrentDirectory>
+			</ProcessCreate>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

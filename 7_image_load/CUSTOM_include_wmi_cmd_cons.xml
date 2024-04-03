@@ -1,0 +1,15 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ImageLoad onmatch="include">
+				<Rule groupRelation="and">
+					<!-- Detects WMI command line event consumers -->
+					<!-- Note: might create too many false positives -->
+					<!-- Ref: https://raw.githubusercontent.com/Neo23x0/sigma/master/rules/windows/sysmon/sysmon_wmi_persistence_commandline_event_consumer.yml -->
+					<ImageLoaded condition="is">wbemcons.dll</ImageLoaded>
+					<Image condition="is">C:\Windows\System32\wbem\WmiPrvSE.exe</Image>
+				</Rule>
+			</ImageLoad>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

@@ -1,0 +1,14 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreate onmatch="exclude">
+				<!-- Complement to include_microsoft_settingcontent-ms.xml -->
+				<!-- Exclude file creation with an .settingcontent-ms extension in their intended context (storage paths of the Immersive Control Panel app's settings) -->
+				<Rule groupRelation="and">
+					<TargetFilename condition="end with">.settingcontent-ms</TargetFilename>
+					<TargetFilename condition="contains">\AppData\Local\Packages\windows.immersivecontrolpanel</TargetFilename>
+				</Rule>
+			</FileCreate>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

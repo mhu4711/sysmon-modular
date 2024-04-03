@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ImageLoad onmatch="include">
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=1053,technique_name=Scheduled Task" condition="end with">taskschd.dll</ImageLoaded>
+					<Image condition="is">C:\Windows\CCM\CcmExec.exe</Image> <!--System Center Configuration Manager-->
+				</Rule>
+			</ImageLoad>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

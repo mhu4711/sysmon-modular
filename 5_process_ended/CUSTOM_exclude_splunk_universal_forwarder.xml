@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessTerminate onmatch="exclude">
+        <Image condition="begin with">C:\Program Files\SplunkUniversalForwarder\bin\</Image> <!--Splunk:UniversalForwarder child processes-->
+ 		<Image condition="begin with">D:\Program Files\SplunkUniversalForwarder\bin\</Image> <!--Splunk:UniversalForwarder child processes-->
+      </ProcessTerminate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

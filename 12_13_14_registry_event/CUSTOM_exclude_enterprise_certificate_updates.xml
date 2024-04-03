@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="exclude">
+				<!-- Exclude Enterprise Certificate Updates (extremely noisy due to SCCM and Group Policies) -->
+				<TargetObject condition="end with">SOFTWARE\Microsoft\EnterpriseCertificates\Root\Certificates</TargetObject>
+				<TargetObject condition="end with">SOFTWARE\Microsoft\SystemCertificates\ROOT\Certificates</TargetObject>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ProcessAccess onmatch="exclude">
+				<!--HP Foundation Agent Service-->
+				<SourceImage condition="is">C:\Windows\system32\CpqMgmt\cqmghost\cqmghost.exe</SourceImage>
+				<!--HP ProLiant Agentless Management Service-->
+				<SourceImage condition="is">C:\Program Files\Hewlett-Packard\AMS\Service\hpqams.exe</SourceImage>				
+			</ProcessAccess>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

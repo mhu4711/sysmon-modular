@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="include">
+				<!-- Monitors for changes to Windows Modern Apps (AppX) registry keys (as used by Oceanlotus/APT32) -->
+				<!-- Note: changes in HKCU are reported via HKU\<SID>\Software\App\... -->
+				<!-- Ref: https://raw.githubusercontent.com/Neo23x0/sigma/master/rules/apt/apt_oceanlotus_registry.yml -->
+				<TargetObject condition="contains">\SOFTWARE\App\</TargetObject>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

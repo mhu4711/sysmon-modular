@@ -1,0 +1,14 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ProcessAccess onmatch="include">
+				<!-- Detects process access to LSASS which is typical for Mimikatz -->
+				<!-- Ref: https://raw.githubusercontent.com/Neo23x0/sigma/master/rules/windows/sysmon/sysmon_mimikatz_detection_lsass.yml -->
+				<Rule groupRelation="and">
+					<TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>
+					<GrantedAccess>0x1410</GrantedAccess>
+				</Rule>          
+			</ProcessAccess>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

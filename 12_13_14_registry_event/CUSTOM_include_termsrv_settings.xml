@@ -1,0 +1,13 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="include">
+				<!-- Detects changes to RDP terminal service sensitive settings -->
+				<!-- Ref: https://raw.githubusercontent.com/Neo23x0/sigma/master/rules/windows/sysmon/sysmon_rdp_settings_hijack.yml -->
+				<TargetObject condition="contains">\services\TermService\Parameters\ServiceDll</TargetObject>
+				<TargetObject condition="contains">\Control\Terminal Server\fSingleSessionPerUser</TargetObject>
+				<TargetObject condition="contains">\Control\Terminal Server\fDenyTSConnections</TargetObject>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

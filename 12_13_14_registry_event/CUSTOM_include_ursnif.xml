@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="include">
+				<!-- Detects new registry key created by Ursnif malware -->
+				<!-- Ref: https://raw.githubusercontent.com/Neo23x0/sigma/master/rules/windows/malware/win_mal_ursnif.yml -->
+				<TargetObject condition="contains">\Software\AppDataLow\Software\Microsoft\</TargetObject>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="exclude">
+				<!-- HP ProLiant Agentless Management Service -->
+				<Image condition="is">C:\Program Files\Hewlett-Packard\AMS\Service\hpqams.exe</Image>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

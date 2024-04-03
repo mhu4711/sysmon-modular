@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.40">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <FileCreate onmatch="exclude">
+		<!-- Overrides for include_system_drive.xml - Too noisy -->
+        <TargetFilename name="technique_id=T1047,technique_name=File System Permissions Weakness" condition="begin with">C:\Windows\</TargetFilename>
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

@@ -1,0 +1,13 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ImageLoad onmatch="exclude">
+				<Rule groupRelation="and">
+					<!-- This doesn't seem to catch, why not? - 31.10.2019 mh-->
+					<ImageLoaded condition="end with">scrobj.dll</ImageLoaded>
+					<Image condition="is">C:\Windows\System32\cscript.exe</Image>
+				</Rule>
+			</ImageLoad>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

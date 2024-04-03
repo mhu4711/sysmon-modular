@@ -1,0 +1,15 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<PipeEvent onmatch="include">
+				<!-- Detects named pipes used by Turla group samples -->
+				<!-- Ref: https://raw.githubusercontent.com/Neo23x0/sigma/master/rules/apt/apt_turla_namedpipes.yml -->
+				<PipeName condition="begin with">\atctl</PipeName>
+				<PipeName condition="begin with">\userpipe</PipeName>
+				<PipeName condition="begin with">\iehelper</PipeName>
+				<PipeName condition="begin with">\sdlrpc</PipeName>
+				<PipeName condition="begin with">\comnap</PipeName>
+			</PipeEvent>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ProcessCreate onmatch="exclude">
+				<ParentImage condition="is">C:\Program Files\McAfee\Endpoint Security\Threat Prevention\mfetp.exe</ParentImage>
+				<ParentImage condition="begin with">C:\Program Files\McAfee\Agent\</ParentImage>
+			</ProcessCreate>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

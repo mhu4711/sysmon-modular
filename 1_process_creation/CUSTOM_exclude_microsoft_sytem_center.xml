@@ -1,0 +1,15 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ProcessCreate onmatch="exclude">
+				<Rule groupRelation="and">
+					<ParentCommandLine condition="is">C:\Windows\system32\svchost.exe -k DcomLaunch</ParentCommandLine>
+					<Image condition="end with">MonitoringHost.exe</Image>
+				</Rule>
+				<ParentCommandLine condition="is">"C:\Program Files\System Center Operations Manager\Agent\MonitoringHost.exe" -Embedding</ParentCommandLine>
+				<ParentCommandLine condition="is">C:\Windows\CCM\CcmExec.exe</ParentCommandLine>
+				<CurrentDirectory condition="begin with">C:\Program Files\System Center Operations Manager\Agent</CurrentDirectory>
+			</ProcessCreate>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

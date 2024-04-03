@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ProcessCreate onmatch="exclude">
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</Image>
+					<ParentCommandLine condition="begin with">C:\Windows\system32\cmd.exe /c ""c:\Program Files\SplunkUniversalForwarder\etc\apps</ParentCommandLine> <!--Scripted inputs launching powershell scripts (.ps1) via cmd.exe-->
+				</Rule>
+			</ProcessCreate>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>
